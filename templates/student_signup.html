@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Signup</title>
+    <!--favicon css, fontapi -->
+    <link rel="icon" href="/static/Images/fevicon.png">
+    <link rel="stylesheet" href="/static/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="d-flex justify-content-center mt-1">
+        {% with messages= get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show w-50 d-flex justify-content-center p-2"
+            role="alert" style="font-family: lexend;">
+            {{ msg }}
+            <button type="button" class="btn-close p-2 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endwith %}
+    </div>
+<a href="/profile" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 6vh;left: 7vh; border-radius: 1vh;">
+        Back</div>
+</a>
+
+    <form method="post">
+        <div class="parent">
+            <div class="box">
+                <div class="contents">
+                    <p class="title">Enter Student Details</p>
+                    <div class="mainbody">
+                        <div class="content_field">
+                            <div class="field">
+                                <p class="name">Name</p>
+                                <input name="name" type="text" class="f" placeholder="Shikhar Pandey" minlength="3"
+                                    maxlength="50" required>
+                            </div>
+                            <div class="field">
+                                <p class="name">Date of Birth</p>
+                                <input name="dob" type="date" class="f" required>
+                            </div>
+                        </div>
+                        <div class="content_field">
+                            <div class="field">
+                                <p class="name">Gender</p>
+                                <select name="gender" id="gender" class="f">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <p class="name">Linkedin</p>
+                                <input name="linkedin" type="url" class="f"
+                                    placeholder="https://www.linkedin.com/in/shikhar-pandey"
+                                  minlength="4"  maxlength="255" required>
+                            </div>
+                        </div>
+                        <div class="content_field">
+                            <div class="field">
+                                <p class="name">Department</p>
+                                <select name="department" id="department" class="f">
+                                    <option value="Data Science & Applications">Data Science & Applications
+                                    </option>
+                                    <option value="Electronic Systems">Electronic Systems</option>
+                                    <option value="Aeronautics and Space Technology">Aeronautics and Space
+                                        Technology</option>
+                                    <option value="Management and Data Science">Management and Data Science
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <p class="name">Degree</p>
+                                <select name="degree" id="degree" class="f">
+                                    <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                                    <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)
+                                    </option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Diploma in Data Science">Diploma in Data Science</option>
+                                    <option value="Diploma in Programming">Diploma in Programming</option>
+                                    <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                                    <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content_field">
+                            <div class="field">
+                                <p class="name">Email</p>
+                                <input name="email" type="email" class="f" placeholder="shikhar@study.iitm.ac.in"
+                                    minlength="7" maxlength="50" required>
+                            </div>
+                            <div class="field">
+                                <p class="name">Password</p>
+                                <input name="password" type="password" class="f" placeholder="Minimum 8 characters"
+                                    minlength="8" maxlength="15" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <button type="submit" class="signup">Register</button></a>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
+
+</html>

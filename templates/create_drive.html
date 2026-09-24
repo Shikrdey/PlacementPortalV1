@@ -1,0 +1,43 @@
+{% extends "companyhome.html" %}
+{% block title %}Create Drive {% endblock %}
+{% block content %}
+<a href="/companyhome" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 14vh;left: 6vh; border-radius: 1vh;">
+        Back</div>
+</a>
+<div class="d-flex justify-content-center align-items-center mt-1">
+    <div class="p-4 mt-4 rounded-3" style="width: 60%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-3" style=" font-family:Lexend;font-size: 4.5vh;font-weight: 550;margin-bottom: 6vh;">Create Drive </p>
+        <form method="post" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Drive Name</p></label>
+                <input type="text" name="drivename" class="form-control" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" placeholder="Drive 1" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Job Title</p></label>
+                <input type="text" name="jobtitle" class="form-control" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" placeholder="Data Scientist" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Job Description</p></label>
+                <textarea name="description" class="form-control" rows="3" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" placeholder="We are seeking Data Scientist to analyze large datasets and build predictive models that drive business decision-making. Candidate must have strong expertise in Python, Statistics and Machine learning Algorithms" required></textarea>
+            </div>
+            <div class="col-12">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Eligibility</p></label>
+                <textarea name="eligibility" class="form-control" rows="2" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" placeholder="M.Tech/M.S/B.Tech/B.E/B.S/B.Sc in Computer Science, Data Science, Statistics or related field with minimum 7.5 CGPA and no active backlogs" required></textarea>
+            </div>
+             <div class="col-md-6">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Application Deadline</p></label>
+                <input type="date" name="deadline" class="form-control" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label"><p style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">Salary</p></label>
+                <input type="text" name="salary" class="form-control" style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 550;font-family: Quicksand;" placeholder="1,500,000" required>
+            </div>
+            <div class="text-center">
+                    <a href="/companyhome"><button type="submit" class="btn btn-dark" style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Create</button></a>
+                </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

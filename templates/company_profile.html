@@ -1,0 +1,103 @@
+{% extends "companyhome.html" %}
+{% block title %} Company Profile {% endblock %}
+{% block content %}
+<a href="/companyhome" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 15vh;left: 7vh; border-radius: 1vh;">
+        Back</div>
+</a>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="p-4 mt-4 rounded-3"
+        style="width: 65%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-4" style=" font-family:Lexend;font-size: 4.5vh;font-weight: 550;">
+            Company Profile </p>
+        <div class="row g-3">
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh; margin-bottom: 1.3vh;">
+                        Name</p>
+                </label>
+                <input value="{{company.company}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-3 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Location</p>
+                </label>
+                <input value="{{company.location}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-3 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        HR Contact</p>
+                </label>
+                <input value="{{company.hrcontact}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Website</p>
+                </label>
+                <input value="{{company.website}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Company Type</p>
+                </label>
+                <input value="{{company.companytype}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Product & Service</p>
+                </label>
+                <input value="{{company.ps}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Email</p>
+                </label>
+                <input value="{{company.email}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Password</p>
+                </label>
+                <input value="{{company.password}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+
+                <div class="text-center viewbutton"><a href="/edit_company_profile/{{company.id}}">
+                    <button type="button" class="btn btn-dark"
+                        style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Edit Profile</button></a>
+                </div>
+            </div>
+    </div>
+{% endblock %}

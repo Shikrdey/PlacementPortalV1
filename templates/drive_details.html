@@ -1,0 +1,262 @@
+{% extends "companyhome.html" %}
+{% block title %}Drive Details {% endblock %}
+{% block content %}
+<a href="/companyhome" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 14vh;left: 6vh; border-radius: 1vh;">
+        Back</div>
+</a>
+<div style="display: flex; justify-content: space-between;margin-top: 2vh;">
+
+    {% if drive.status=="Ongoing" or drive.status=="Closed" %}
+    <div class="p-4 mt-5 rounded-2"
+        style="margin-left: 11vh;height: 83%; width: 50%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-3" style=" font-family:Lexend;font-size: 3.5vh;font-weight: 600;">
+            {{drive.jobtitle}}</p>
+        <form method="post" class="row g-3">
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Drive Name</p>
+                </label>
+                <input value="{{drive.drivename}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Drive Status</p>
+                </label>
+                {% if drive.status=="Ongoing" %}
+                <select name="status" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family:Lexend;">
+                    <option value="Ongoing" selected>Ongoing</option>
+                    <option value="Closed">Closed</option>
+                </select>
+                {% else %}
+                <input value="{{drive.status}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    disabled>
+
+                {% endif %}
+
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Job Description</p>
+                </label>
+                <textarea class="form-control" rows="3"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>{{drive.description}}</textarea>
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Eligibility</p>
+                </label>
+                <textarea class="form-control" rows="2"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>{{drive.eligibility}}</textarea>
+            </div>
+            {% if drive.status=="Ongoing" %}
+            <div class="col-md-4 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Application Deadline</p>
+                </label>
+                <input value="{{drive.deadline}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Salary</p>
+                </label>
+                <input value="{{drive.salary}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="text-center viewbutton" style="position: absolute; bottom: 12.5vh;left: 71vh;">
+                    <button type="submit" class="btn btn-dark"
+                        style="width: 32vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Update
+                        Status</button>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Application Deadline</p>
+                </label>
+                <input value="{{drive.deadline}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Salary</p>
+                </label>
+                <input value="{{drive.salary}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+
+    {% else %}
+    <div class="p-4 mt-5 rounded-2"
+        style="margin-left: 11vh;height: 83%; width: 50%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-3" style=" font-family:Lexend;font-size: 3.5vh;font-weight: 600;">
+            Drive Details</p>
+        <form method="post" class="row g-3">
+            <div class="col-md-4 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Drive Name</p>
+                </label>
+                <input type="text" name="drivename" value="{{drive.drivename}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    required>
+            </div>
+            <div class="col-md-5 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Job Title</p>
+                </label>
+                <input type="text" name="jobtitle" value="{{drive.jobtitle}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    required>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Drive Status</p>
+                </label>
+                <input name="status" value="{{drive.status}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    disabled>
+                    <input type="hidden" name="status" value="{{drive.status}}">
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Job Description</p>
+                </label>
+                <textarea name="description" class="form-control" rows="3"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    required>{{drive.description}}</textarea>
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Eligibility</p>
+                </label>
+                <textarea name="eligibility" class="form-control" rows="2"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    required>{{drive.eligibility}}</textarea>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Application Deadline</p>
+                </label>
+                <input type="date" name="deadline" value="{{drive.deadline}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    required>
+            </div>
+            <div class="col-md-3 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Salary</p>
+                </label>
+                <input type="text" name="salary" value="{{drive.salary}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    required>
+            </div>
+                <button type="submit" class="btn btn-dark viewbutton"
+                    style="width: 23vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;position: absolute; bottom: 12.5vh;left: 61.7vh;">Update
+                    Drive</button>
+                <a href="/delete/drive/{{drive.id}}" style="text-decoration: none;"><button type="button" class="btn btn-danger viewbutton"
+                    style="width: 16vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;position: absolute; bottom: 12.5vh;left: 85vh;">Delete</button></a>
+        </form>
+    </div>
+    {% endif %}
+
+
+    <div class="p-2 mt-5 rounded-2"
+        style="margin-left:3vh;margin-right: 4vh;height:70.5vh; width: 55%;box-shadow: 0vh 0vh 0.2vh 0vh #181818; background-color:  rgb(246, 243, 243);">
+        {% if application %}
+        <p class="text-center mb-4 mt-2" style="font-family:Lexend;font-size: 4vh;font-weight: 600;">
+            Student Applications </p>
+        <div style="max-height: 56vh; overflow: auto;">
+
+            <table class="table table-hover">
+                <tr class="table-secondary">
+                    <th scope="col" style="font-family: Lexend;">Student Name</th>
+                    <th scope="col" style="width: 180px; text-align: center;font-family: Lexend;">Email</th>
+                    <th scope="col" style="width: 80px; text-align: center;font-family: Lexend;">Status</th>
+                    <th scope="col" style="width: 80px; text-align: center;font-family: Lexend;">Application
+                    </th>
+                </tr>
+
+                {% for a in application %}
+                {% for s in student %}
+                {% if a.student_id == s.id %}
+
+                <tr>
+                    <td style="font-family: lexend;">{{s.name}}</td>
+                    <td style="width: 180px; text-align: center; font-family: lexend;">{{s.email}}</td>
+                    {% if a.status== "Applied" %}
+                    <td style="width: 100px; text-align: center;font-family: lexend;"><span
+                            class="badge text-bg-primary">{{a.status}}</span></td>
+                    {% elif a.status== "Shortlisted" %}
+                    <td style="width: 100px; text-align: center;font-family: lexend;"><span
+                            class="badge text-bg-warning">{{a.status}}</span></td>
+                    {% elif a.status== "Accepted" %}
+                    <td style="width: 100px; text-align: center;font-family: lexend;"><span
+                            class="badge text-bg-success">{{a.status}}</span></td>
+                    {% elif a.status== "Rejected" %}
+                    <td style="width: 100px; text-align: center;font-family: lexend;"><span
+                            class="badge text-bg-danger">{{a.status}}</span></td>
+                    {% endif %}
+                    <td style="width: 80px; text-align: right;"><a href="/view_application/{{a.id}}"><button
+                                type="button" class="btn btn-dark"
+                                style="width: 10vh;height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;">View</button></a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <p class="text-center text-muted"
+            style="font-family: lexend; font-size: 3.5vh; font-weight: 600; margin-top: 23vh;">No applications
+            yet.</p>
+        <p class="text-center text-muted" style="font-family: lexend; font-size: 3.3vh; font-weight: 600;">Once
+            student apply, they will appear here.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

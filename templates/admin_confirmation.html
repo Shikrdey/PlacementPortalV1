@@ -1,0 +1,23 @@
+{% extends "admin_dashboard.html" %}
+{% block title %}Delete Drive {% endblock %}
+{% block content %}
+<a href="{{back}}" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 14vh;left: 6vh; border-radius: 1vh;">
+        Back</div>
+</a>
+<div class="d-flex justify-content-center align-items-center" style="margin-top: 20vh;">
+    <div class="p-4 rounded-3"
+        style="width: 45%;height: 20vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-3" style=" font-family:Lexend;font-size: 3.5vh;font-weight: 500;margin-bottom: 6vh;">
+            Are you sure you want to delete this {{content}}? </p>
+        <a href="{{home}}" style="text-decoration: none;"><button type="button"
+                class="btn btn-dark viewbutton"
+                style="width: 16vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;position: absolute; top: 43vh;left: 88vh;">No</button></a>
+        <form method="post" action="{{link}}">
+                <button type="submit" class="btn btn-danger viewbutton"
+                    style="width: 16vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;position: absolute; top: 43vh;left: 104vh;">Delete</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

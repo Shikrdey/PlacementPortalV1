@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Portal</title>
+    <!-- favicon, css, fontapi -->
+    <link rel="icon" href="/static/Images/fevicon.png">
+    <link rel="stylesheet" href="/static/hero.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="d-flex justify-content-center mt-1">
+        {% with messages= get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show w-50 d-flex justify-content-center p-2"
+            role="alert" style="font-family: lexend;">
+            {{ msg }}
+            <button type="button" class="btn-close p-2 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endwith %}
+    </div>
+
+
+    <div class="logo">
+        <img src="/static/Images/Logo.png" alt="logo" class="photo">
+    </div>
+    <div class="box1">
+        <p class="content">We are actively seeking motivated and skilled candidates for multiple roles in our organisation.
+             If you are passionate about building efficient and scalable applications, 
+             this is your chance to step into the industry.
+              We value <span class="bold">problem-solving skills, adaptability and a willingness to learn in a fast-paced environment.</span>
+               At our company, you will get the opportunity to work on real-world projects, collaborate with experienced professionals, and continuously enhance your technical and professional skills. We believe in growth, innovation, and creating impact through technology.
+        <button class="click">Read more</button>
+    </div>
+    <div class="box2">
+        <p class="content">I'm excited to share that I have secured an <span class="bold">Internship as a Backend Developer.</span>
+             Grateful for this opportunity and ready to learn & grow.
+        </p>
+        <button class="click2">Congratulations!!</button>
+    </div>
+    <div class="tagline">
+        <img src="/static/Images/Tagline.png" alt="tagline" class="tag">
+    </div>
+    <div class="elements">
+        <a href="/login"><button class="login">Login</button></a>
+        <a href="/profile"><button class="signup">Signup</button></a>
+
+    </div>
+    <img src="/static/Images/pfp.png" alt="pfp1" class="pfp1">
+    <img src="/static/Images/pfp2.png" alt="pfp1" class="pfp2">
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
+
+</html>

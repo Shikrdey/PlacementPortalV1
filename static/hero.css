@@ -1,0 +1,175 @@
+body{
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+    width: 100%;
+    font-family: "Lexend";
+    box-sizing: border-box;
+}
+.logo, .tagline {
+    height: 100%;
+    width: 100%;
+}
+.photo{
+    height: 19vh;
+    position: absolute;
+    top: 6.5vh;
+    left: 30vh;
+}
+
+.content{
+    font-family: "Lexend";
+    font-weight: 500;
+}
+.box1{
+    height: 60vh;
+    width: 52vh;
+    background-color: #D9D9D9;
+    color: #000000;
+    position: absolute;
+    bottom: 11vh;
+    left: 25vh;
+    border-radius: 2vh;
+    box-sizing: border-box;
+    padding: 3vh;
+    transition: all 0.1s ease-in-out;
+    
+
+}
+.box1:hover{
+    background-color: #282828;
+    color: #fafafa;
+    scale: 1.02;
+    .click{
+        background-color: #fafafa;
+    color: #1a1a1a;
+    }
+    
+}
+
+.bold{
+    font-weight: 800;
+}
+.click{
+    width: 46vh;
+    height: 6vh;
+    font-family: "Lexend";
+    font-weight: bold;
+    border: none;
+    border-radius: 1vh;
+    background-color: #282828;
+    color: #fafafa;
+    margin-top: 5vh;
+}
+
+.box2{
+    height: 30vh;
+    width: 52vh;
+    background-color: #282828;
+    color: #fafafa;
+    position: absolute;
+    top: 11vh;
+    right: 25vh;
+    border-radius: 2vh;
+    box-sizing: border-box;
+    padding: 3vh;
+    box-shadow: 0vh 0vh 0.1vh 0vh #282828;
+    transition: all 0.1s ease-in-out;
+}
+.box2:hover{
+    background-color: #D9D9D9;
+    color: #000000;
+    scale: 1.02;
+    .click2{
+        background-color: #282828;
+        color: #fafafa;
+    }
+}
+
+
+.click2{
+    width: 46vh;
+    height: 6vh;
+    font-family: "Lexend";
+    font-weight: bold;
+    border: none;
+    border-radius: 1vh;
+    background-color: #fafafa;
+    color: #1a1a1a;
+    margin-top: 4vh;
+    align-items: center;
+}
+
+.login{
+    width: 35vh;
+    height: 8vh;
+    background-color: #282828;
+    color: #fafafa;
+    position: absolute;
+    bottom: 21vh;
+    right: 35vh;
+    border-radius: 2.5vh;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 650;
+    font-size: 2.5vh;
+    letter-spacing: -0.02vh;
+    transition: all 0.2s ease-in-out;
+}
+.login:hover{
+    background-color: #181818;
+    scale: 1.02;
+}
+
+.signup{
+    width: 35vh;
+    height: 8vh;
+    background-color: #dcdcdc;
+    color: #181818;
+    position: absolute;
+    bottom: 11vh;
+    right: 35vh;
+    border-radius: 2.5vh;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   font-weight: 650;
+    font-size: 2.5vh;
+    letter-spacing: -0.02vh;
+    transition: all 0.2s ease-in-out;
+}
+.signup:hover{
+    background-color: #d0cfcf;
+    scale: 1.02;
+}
+
+.elements{
+    gap: 10vh;
+}
+.tag {
+    position: absolute;
+    height:16vh;
+    right: 29vh;
+    bottom: 36vh;
+}
+.pfp1 {
+    height: 5vh;
+    border-radius: 50vh;
+    position: absolute;
+    left: 18vh;
+    top: 29.5vh;
+
+}
+.pfp2 {
+    height: 5vh;
+    border-radius: 50vh;
+    position: absolute;
+    right: 79vh;
+    top: 11vh;
+
+}
+    
+

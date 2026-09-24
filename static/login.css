@@ -1,0 +1,90 @@
+body{
+    background-color: #fafafa;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    color: #181818;
+}
+
+.main_site{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    width: 60vh;
+    height: 65vh;
+    background-color: rgb(246, 243, 243);
+    border-radius: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0vh 0vh 0.2vh 0vh #181818
+    
+}
+
+.field{
+    width: 50vh;
+    height: 6vh;
+    background-color: rgb(229, 229, 229);
+    border-radius: 1vh;
+    margin-top: -0.2vh;
+    font-family: "Lexend";
+    font-weight: 350;
+    font-size: 2vh;
+    border: none;
+    color:#1e1e1e ;
+    padding: 0vh 2vh;
+    box-sizing: border-box;
+}
+
+.title{
+    font-family:"Lexend";
+    font-weight: 500;
+    font-size: 1.5vh;
+    margin-left: -0.6vh;
+}
+
+.semibox{
+    margin-top: 3vh;
+}
+
+
+.press{
+    width: 45vh;
+    height: 6vh;
+    margin-top: 5vh;
+    background-color:#181818;
+    color: #fafafa;
+    font-family:"Lexend";
+    font-weight: 600;
+    font-size: 2.3vh;
+    border: none;
+    border-radius: 1vh;
+    transition: all 0.1s ease-in-out;
+}
+
+.press:hover{
+    background-color: #0b0b0b;
+    color: #fafafa;
+    scale: 1.02;
+}
+
+.logo{
+    font-family: "Lexend";
+    font-weight: 550;
+    font-size: 4.5vh;
+    margin-top: -0.7vh;
+}
+.lists{
+    margin-top: -2.7vh;
+}
+.backbutton:hover{
+    scale: 1.02;
+}
+
+

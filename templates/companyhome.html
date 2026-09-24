@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Company Homepage {% endblock %}</title>
+    <link rel="icon" href="/static/Images/fevicon.png">
+    <link rel="stylesheet" href="/static/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="parent">
+        <div class="nav">
+            <div class="head">
+                <a href="/companyhome" style="text-decoration: none;">
+                    <p class="title">Welcome,</p>
+                    <p class="subtitle">{{ company.company.split(" ")[0] | upper}}!</p>
+                </a>
+            </div>
+            <form method="post" action="/company/search">
+            <div class="bar_search">
+                <input name="query" type="search" class="Search" placeholder="Try searching here (i.e, Drive 1, Data Scientist )" required>
+                <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+            </form>
+
+            <a href="/createdrive" class="links">Create</a>
+            <a href="/logout" class="links">Logout</a>
+            <a href="/company_profile/{{company.id}}" class="pfp"><i class="bi bi-person-circle" style="font-size: 3.5vh; color: #fafafa;"></i></a>
+        </div>
+        <div class="main_content">
+            <div class="d-flex justify-content-center mt-1">
+                {% with messages= get_flashed_messages(with_categories=true) %}
+                {% for category, msg in messages %}
+                <div class="alert alert-{{category}} alert-dismissible fade show w-50 d-flex justify-content-center p-2"
+                    role="alert" style="font-family: lexend;">
+                    {{ msg }}
+                    <button type="button" class="btn-close p-2 mt-1" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endwith %}
+            </div>
+            {% block content %}
+            {% if ongoing_drive or closed_drive or pending_drive or rejected_drive %}
+            <div class="container">
+                <div class="row">
+                    {% if ongoing_drive %}
+                    <div>
+                        <p style="font-family: Lexend; font-weight: 600;font-size: 2.7vh; margin-top: 1.3vh;">Ongoing
+                            Drives ({{ ongoing_drive | length }})</p>
+                    </div>
+                    {% for d in ongoing_drive %}
+                            <div class="card mb-3 mt-2"
+                                style="width: 21%; margin-left: 3vh; margin-right: 3vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+                                <div class="card-header">
+                                    <p style="font-family: Lexend;">{{d.drivename}}<span class="badge bg-warning"
+                                            style="font-family: lexend; margin-left: 10vh;">Ongoing</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <p style="font-family: Lexend; font-weight: 620;">{{d.jobtitle}}</p>
+                                    </h5>
+                                    <p class="card-text" style="font-family: Lexend;">Deadline: <span
+                                            style="font-family: Lexend; font-weight: 550;">{{d.deadline}}</span></p>
+                                    <div class="text-center" style="align-self: center;">
+                                        <a href="/drive_details/{{d.id}}"><button type="submit" class="btn btn-dark"
+                                                style="width: 25vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;margin-left:-2%;">View</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if closed_drive %}
+                    <div>
+                        <p style="font-family: Lexend; font-weight: 600;font-size: 2.7vh; margin-top: 1.3vh;">Closed
+                            Drives ({{ closed_drive | length }})</p>
+                    </div>
+                    {% for d in closed_drive %}
+                    <div class="card mb-3 mt-2"
+                        style="width: 21%; margin-left: 3vh; margin-right: 3vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+                        <div class="card-header">
+                            <p style="font-family: Lexend;">{{d.drivename}}<span class="badge bg-success"
+                                    style="font-family: lexend; margin-left: 10vh;">Closed</span></p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <p style="font-family: Lexend; font-weight: 620;">{{d.jobtitle}}</p>
+                            </h5>
+                            <p class="card-text" style="font-family: Lexend;">Deadline: <span
+                                    style="font-family: Lexend; font-weight: 550;">{{d.deadline}}</span></p>
+                            <div class="text-center" style="align-self: center;">
+                                <a href="/drive_details/{{d.id}}"><button type="submit" class="btn btn-dark"
+                                        style="width: 25vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;margin-left:-2%;">View</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% if pending_drive %}
+                    <div>
+                        <p style="font-family: Lexend; font-weight: 600;font-size: 2.7vh; margin-top: 1.3vh;">Pending
+                            Drives ({{ pending_drive | length }})</p>
+                    </div>
+                    {% for d in pending_drive %}
+                            <div class="card mb-3 mt-2"
+                                style="width: 21%; margin-left: 3vh; margin-right: 3vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+                                <div class="card-header">
+                                    <p style="font-family: Lexend;">{{d.drivename}}<span class="badge bg-primary"
+                                            style="font-family: lexend; margin-left: 10vh;">Pending</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <p style="font-family: Lexend; font-weight: 620;">{{d.jobtitle}}</p>
+                                    </h5>
+                                    <p class="card-text" style="font-family: Lexend;">Deadline: <span
+                                            style="font-family: Lexend; font-weight: 550;">{{d.deadline}}</span></p>
+                                    <div class="text-center" style="align-self: center;">
+                                        <a href="/drive_details/{{d.id}}"><button type="submit" class="btn btn-dark"
+                                                style="width: 25vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;margin-left:-2%;">View</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% if rejected_drive %}
+                    <div>
+                        <p style="font-family: Lexend; font-weight: 600;font-size: 2.7vh; margin-top: 1.3vh;">Rejected
+                            Drives ({{ rejected_drive | length }})</p>
+                    </div>
+                    {% for d in rejected_drive %}
+                            <div class="card mb-3 mt-2"
+                                style="width: 21%; margin-left: 3vh; margin-right: 3vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+                                <div class="card-header">
+                                    <p style="font-family: Lexend;">{{d.drivename}}<span class="badge bg-danger"
+                                            style="font-family: lexend; margin-left: 10vh;">Rejected</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <p style="font-family: Lexend; font-weight: 620;">{{d.jobtitle}}</p>
+                                    </h5>
+                                    <p class="card-text" style="font-family: Lexend;">Deadline: <span
+                                            style="font-family: Lexend; font-weight: 550;">{{d.deadline}}</span></p>
+                                    <div class="text-center" style="align-self: center;">
+                                        <a href="/drive_details/{{d.id}}"><button type="submit" class="btn btn-dark"
+                                                style="width: 25vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;margin-left:-2%;">View</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% else %}
+                    <p class="text-center text-muted" style="font-family: lexend; font-size: 4.1vh; font-weight: 600; margin-top: 13vh;">Create Your First Drive.</p>
+                    <p class="text-center text-muted" style="font-family: lexend; font-size: 3vh; font-weight: 600;">Click on <a href="/createdrive" style="text-decoration: none;">Create</a> to add your first drive and start hiring.</p>
+                    <p class="text-center text-muted" style="font-family: lexend;font-size: 5vh; font-weight: 600;"><i class="bi bi-file-earmark-plus"></i></p>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+    integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+    crossorigin="anonymous"></script>
+
+</html>

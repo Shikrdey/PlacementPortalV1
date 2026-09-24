@@ -1,0 +1,108 @@
+{% extends "admin_dashboard.html" %}
+{% block title %} Applications List {% endblock %}
+{% block content %}
+<div class="row mt-3 mb-4" style="margin-left: 4.5vh;margin-right: 4.5vh;">
+    <div style="height: 2vh; width: 15vh; margin-right: 1vh;">
+        <a href="/admindashboard" style="text-decoration: none;">
+        <div class="shadow card text-center bg-dark" style="height: 7vh; width: 11vh;">
+            <div class="card-body" style="padding: 0.6vh;">
+                <p class="card-title" style="font-family: lexend; font-size: 4vh; color: white;"><i class="bi bi-arrow-left"></i>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="col-2" style="width: 22%;">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                        class="bi bi-journal-plus text-primary"></i> Applied Applications</p>
+                <h2 class="text-primary">{{ applied_applications }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-2" style="width: 23%;">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                        class="bi bi-journal-text text-warning"></i> Shortlisted Applications</p>
+                <h2 class="text-warning">{{ shortlisted_applications }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-2" style="width: 22%;">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                        class="bi bi-journal-check text-success"></i> Accepted Applications</p>
+                <h2 class="text-success">{{ accepted_applications }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-2" style="width: 22%;">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                        class="bi bi-journal-x text-danger"></i> Rejected Application</p>
+                <h2 class="text-danger">{{ rejected_applications }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% if application %}
+<div style="margin-left: 3vh; margin-right: 13vh;">
+    <div>
+        <p class="text-center" style="font-family: lexend; font-size: 4vh; font-weight: 600; margin-left: 15vh;">Applications
+            List</p>
+        <table class="table table-hover" style="margin-left: 5vh; margin-bottom: 2vh;">
+            <tr class="table-secondary">
+                <th scope="col" style="font-family: lexend; font-size: 2.1vh;">Student</th>
+                <th scope="col" style="width: 430px; text-align: center; font-family: lexend; font-size: 2.1vh;">Company</th>
+              <th scope="col" style="width: 230px; text-align: center; font-family: lexend; font-size: 2.1vh;">Drive
+              </th>
+              <th scope="col" style="width: 300px; text-align: center; font-family: lexend; font-size: 2.1vh;">Job Title
+              </th>
+              <th scope="col" style="width: 100px; text-align: center; font-family: lexend; font-size: 2.1vh;">Status
+                </th>
+              <th scope="col" style="width: 100px; text-align: center; font-family: lexend; font-size: 2.1vh;">Action
+              </th>
+            </tr>
+            {% for a in application %}
+            {% for s in student %}
+            {% for c in company %}
+            {% for d in drive %}
+            {% if a.student_id==s.id and a.drive_id==d.id and d.company_id==c.id %}
+            <tr>
+                <td>{{s.name | title}}</td>
+                <td class="text-center">{{c.company}}</td>
+                <td class="text-center">{{d.drivename}}</td>
+                <td class="text-center">{{d.jobtitle}}</td>
+                {% if a.status=="Applied" %}
+                <td class="text-center"><span class="badge text-bg-primary">{{a.status}}</span></td>
+                {% elif a.status=="Shortlisted" %}
+                <td class="text-center"><span class="badge text-bg-warning">{{a.status}}</span></td>
+                {% elif a.status=="Accepted" %}
+                <td class="text-center"><span class="badge text-bg-success">{{a.status}}</span></td>
+                {% else %}
+                <td class="text-center"><span class="badge text-bg-danger">{{a.status}}</span></td>
+                {% endif %}
+                <td class="text-end"><a href="/admin_view_aplication/{{a.id}}"><button type="button" class="btn btn-dark"
+                            style="width: 10vh;height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;">View</button></a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+             {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+<p class="text-center text-muted"
+            style="font-family: lexend; font-size: 3.5vh; font-weight: 600; margin-top: 11vh;">No applications
+            yet.</p>
+        <p class="text-center text-muted" style="font-family: lexend; font-size: 3.3vh; font-weight: 600;">Once
+            student apply, they will appear here.</p>
+
+{% endif %}
+</div>
+{% endblock %}

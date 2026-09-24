@@ -1,0 +1,89 @@
+{% extends "admin_dashboard.html" %}
+{% block title %} Search Results{% endblock %}
+{% block content %}
+<div class="row mt-3 mb-4" style="margin-left: 4.5vh;margin-right: 4.5vh;">
+    <div style="height: 2vh; width: 15vh; margin-right: 8vh;">
+        <a href="/admindashboard" style="text-decoration: none;">
+        <div class="shadow card text-center bg-dark" style="height: 7vh; width: 11vh; margin-right: 8vh;">
+            <div class="card-body" style="padding: 0.6vh;">
+                <p class="card-title" style="font-family: lexend; font-size: 4vh; font-weight: 900; color: white;"><i
+                        class="bi bi-arrow-left"></i>
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="col-5">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                    class="bi bi-buildings text-secondary"></i> Recruiters</p>
+                <h2 class="text-secondary">{{company|length }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="shadow card text-center border-dark">
+            <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                    class="bi bi-people text-success"></i> Students</p>
+                <h2 class="text-success">{{ student |length}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-left: 3vh; margin-right: 13vh;">
+    <div>
+        {% if company or student %}
+        <p class="text-center" style="font-family: lexend; font-size: 4vh; font-weight: 600; margin-left: 15vh;">Search Results</p>
+        <table class="table table-hover" style="margin-left: 5vh; margin-bottom: 2vh;">
+            <tr class="table-secondary">
+                <th scope="col" style="font-family: lexend; font-size: 2.1vh;">Name</th>
+                <th scope="col" style="width: 230px; text-align: center; font-family: lexend; font-size: 2.1vh;">Email
+                </th>
+                 <th scope="col" style="width: 230px; text-align: center; font-family: lexend; font-size: 2.1vh;">User Type
+                </th>
+                <th scope="col" style="width: 100px; text-align: center; font-family: lexend; font-size: 2.1vh;">Status
+                </th>
+                <th scope="col" style="width: 100px; text-align: center; font-family: lexend; font-size: 2.1vh;">Action
+                </th>
+            </tr>
+            {% for c in company %}
+            <tr>
+                <td>{{c.company}}</td>
+                <td class="text-center">{{c.email}}</td>
+                <td class="text-center" style="font-family: lexend;font-size: 2vh; font-weight: 500;"><i class="bi bi-buildings text-info"></i> Recruiter</td>
+                {% if c.status=="Approved" %}
+                <td class="text-center"><span class="badge text-bg-success">{{c.status}}</span></td>
+                {% else %}
+                <td class="text-center"><span class="badge text-bg-danger">{{c.status}}</span></td>
+                {% endif %}
+                <td class="text-end"><a href="/company_approval/{{c.id}}"><button type="button" class="btn btn-dark"
+                            style="width: 10vh;height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;">View</button></a>
+                </td>
+            </tr>
+            {% endfor %} 
+
+            {% for s in student %}
+            <tr>
+                <td>{{s.name | title }}</td>
+                <td class="text-center">{{s.email}}</td>
+                <td class="text-center" style="font-family: lexend;font-size: 2vh; font-weight: 500;"><i class="bi bi-people text-info"></i> Student</td>
+                {% if s.status=="Approved" %}
+                <td class="text-center"><span class="badge text-bg-success">{{s.status}}</span></td>
+                {% else %}
+                <td class="text-center"><span class="badge text-bg-danger">{{s.status}}</span></td>
+                {% endif %}
+                <td class="text-end"><a href="/student_approval/{{s.id}}"><button type="button" class="btn btn-dark"
+                            style="width: 10vh;height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;">View</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="text-center text-muted" style="font-family: lexend; font-size: 4vh; font-weight: 600; margin-left: 15vh;">Oops! No results found for your search.</p>
+        <p class="text-center text-muted" style="font-family: lexend;font-size: 5vh; font-weight: 600; margin-left: 17vh;"><i class="bi bi-emoji-frown"></i></p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

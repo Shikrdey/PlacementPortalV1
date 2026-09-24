@@ -1,0 +1,112 @@
+{% extends "admin_dashboard.html" %}
+{% block title %} Company Details {% endblock %}
+{% block content %}
+
+<div class="body"
+    style="width: 15vh;height: 3.3vh;display: flex; align-items: center; justify-content: center;background: #181818;position: absolute;top: 20.9vh; left:35vh;rotate: -23deg; box-shadow: 0vh 0vh 0.2vh 0vh #181818;">
+    <p class="title" style="font-family: lexend; font-size: 1.4vh;font-weight: 600; color: #ffffff;">Recruiter Details
+    </p>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="p-4 mt-4 rounded-3"
+        style="width: 60%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-4" style=" font-family:Lexend;font-size: 4.5vh;font-weight: 550;margin-bottom: 6vh;">
+            {{company_details.company}} </p>
+        <form method="post" class="row g-3">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh; margin-bottom: 1.3vh;">
+                        Location</p>
+                </label>
+                <input value="{{company_details.location}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Website</p>
+                </label>
+                <input value="{{company_details.website}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        HR Contact</p>
+                </label>
+                <input value="{{company_details.hrcontact}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Email</p>
+                </label>
+                <input value="{{company_details.email}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Company Type</p>
+                </label>
+                <input value="{{company_details.companytype}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Product & Services</p>
+                </label>
+                <input value="{{company_details.ps}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Status</p>
+                </label>
+                <select name="status" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;">
+                    {% if company_details.status=="Pending" %}
+                    <option value="Pending" selected>Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Blacklisted">Blacklisted</option>
+                    {% elif company_details.status=="Approved" %}
+                    <option value="Approved" selected>Approved</option>
+                    <option value="Blacklisted">Blacklisted</option>
+                    {% else %}
+                    <option value="Approved">Approved</option>
+                    <option value="Blacklisted" selected>Blacklisted</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div style="display: flex;align-items: center; justify-content: space-evenly;">
+                <div>
+                    <a href="/company_list"><button type="button" class="btn btn-dark"
+                            style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;"><i class="bi bi-arrow-left"></i> Back</button></a>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-dark"
+                        style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Update
+                        Status</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,62 @@
+{% extends "studenthome.html" %}
+{% block title %} Application History {% endblock %}
+{% block content %}
+    <a href="/studenthome" style="text-decoration: none;">
+        <div class="backbutton" style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 15.7vh;left: 6vh; border-radius: 1vh;">
+        Back</div></a>
+        {% if application %}
+        <p class="text-center mb-4 mt-3" style="font-family:Lexend;font-size: 4.5vh;font-weight: 600;">
+            Application History </p>
+    <div class="semibox mb-3" style="margin-left: 11vh;margin-right: 11vh;">
+        <table class="table table-hover">
+            <tr class="table-secondary">
+                <th scope="col" style="font-family:Lexend;width: 80px;">Drive</th>
+                <th scope="col" style="font-family:Lexend;text-align: center;">Company</th>
+                <th scope="col" style="font-family:Lexend;width: 210px; text-align: center;">Job Title</th>
+                <th scope="col" style="font-family:Lexend;width: 100px; text-align: center;">Status</th>
+                <th scope="col" style="font-family:Lexend;width: 100px; text-align: center;">Action</th>
+            </tr>
+
+            {% for a in application %}
+            {% for d in drive %}
+            {% if a.drive_id==d.id %}
+            {% for c in company %}
+            {% if c.id== d.company_id %}
+            <tr>
+                <td style="font-family: lexend;">{{d.drivename}}</td>
+                <td class="text-center" style="font-family: lexend;">{{c.company}}</td>
+                <td class="text-center" style="font-family: lexend;">{{d.jobtitle}}</td>
+                {% if a.status== "Applied" %}
+                <td scope="col" style="font-family: lexend;width: 100px; text-align: center;"><span
+                        class="badge text-bg-primary">{{a.status}}</span></td>
+                {% elif a.status== "Shortlisted" %}
+                <td scope="col" style="font-family: lexend;width: 100px; text-align: center;"><span
+                        class="badge text-bg-warning">{{a.status}}</span></td>
+                {% elif a.status== "Accepted" %}
+                <td scope="col" style="font-family: lexend;width: 100px; text-align: center;"><span
+                        class="badge text-bg-success">{{a.status}}</span></td>
+                {% elif a.status== "Rejected" %}
+                <td scope="col" style="font-family: lexend;width: 100px; text-align: center;"><span
+                        class="badge text-bg-danger">{{a.status}}</span></td>
+                {% endif %}
+                <td class="text-end"><a href="/student_view_application/{{a.id}}"><div class="viewbutton"> <button type="button" class="btn btn-dark"
+                            style="width: 10vh;height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;">View</button></div></a>
+                </td>
+
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="text-center text-muted"
+            style="font-family: lexend; font-size: 3.5vh; font-weight: 600; margin-top: 11vh;">No applications
+            yet.</p>
+        <p class="text-center text-muted" style="font-family: lexend; font-size: 3.3vh; font-weight: 600;">Once
+            you apply, they will appear here.</p>
+
+        {% endif %}
+    </div>
+{% endblock %}

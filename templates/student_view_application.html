@@ -1,0 +1,161 @@
+{% extends "studenthome.html" %}
+{% block title %} Application Details {% endblock %}
+{% block content %}
+<a href="/application_history" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 14vh;left: 6vh; border-radius: 1vh;">
+        Back</div>
+</a>
+<div style="display: flex; justify-content: space-between;margin-top: 2vh;">
+    <div class="p-4 mt-5 rounded-2"
+        style="margin-left: 11vh;height: 83%; width: 60%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-3" style=" font-family:Lexend;font-size: 3.5vh;font-weight: 600;">
+            {{company.company | upper}}</p>
+        <form class="row g-3">
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Drive Name</p>
+                </label>
+                <input value="{{drive.drivename}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight:400 ;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Job Title</p>
+                </label>
+                <input value="{{drive.jobtitle}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Job Description</p>
+                </label>
+                <textarea class="form-control" rows="3"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>{{drive.description}}</textarea>
+            </div>
+            <div class="col-12 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Eligibility</p>
+                </label>
+                <textarea class="form-control" rows="2"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>{{drive.eligibility}}</textarea>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Application Deadline</p>
+                </label>
+                <input value="{{drive.deadline}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Salary</p>
+                </label>
+                <input value="{{drive.salary}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+        </form>
+    </div>
+    <div class="p-4 mt-5 rounded-2"
+        style="margin-left:3vh;margin-right: 10vh; width: 40%;box-shadow: 0vh 0vh 0.2vh 0vh #181818;background-color: #f2f2f2; ">
+
+        <p class="text-center mb-4" style="font-family:Lexend;font-size: 4vh;font-weight: 600;">
+            Application </p>
+        <div class="row g-3">
+            <div class="col-12 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Resume Link</p>
+                </label>
+                <input value="{{application.resume}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Applying For</p>
+                </label>
+                <input value="{{application.position}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        CGPA (out of 10)</p>
+                </label>
+                <input value="{{application.cgpa}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+           <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Expected Graduation Year</p>
+                </label>
+                <input value="{{application.year}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Applied On</p>
+                </label>
+                <input value="{{application.date_added}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    disabled>
+            </div>
+           <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 0.5vh;">
+                        Application Status</p>
+                </label>
+                {% if application.status=="Applied" %}
+                <input value="{{application.status}}" class="form-control border-primary"
+                    style="background-color:rgb(229, 229, 229);color: #0d6efd;font-weight: 450;font-family: Lexend;"
+                    disabled>
+                    {% elif application.status=="Shortlisted" %}
+                    <input value="{{application.status}}" class="form-control border-warning"
+                    style="background-color:rgb(229, 229, 229);color: #dea803;font-weight: 450;font-family: Lexend;"
+                    disabled>
+                    {% elif application.status=="Accepted" %}
+                    <input value="{{application.status}}" class="form-control border-success"
+                    style="background-color:rgb(229, 229, 229);color: #198754;font-weight: 450;font-family: Lexend;"
+                    disabled>
+                    {% elif application.status=="Rejected" %}
+                    <input value="{{application.status}}" class="form-control border-danger"
+                    style="background-color:rgb(229, 229, 229);color: #dc3545;font-weight: 450;font-family: Lexend;"
+                    disabled>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+ 

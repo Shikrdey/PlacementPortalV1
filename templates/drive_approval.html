@@ -1,0 +1,113 @@
+{% extends "admin_dashboard.html" %}
+{% block title %} Drive Details {% endblock %}
+{% block content %}
+
+<div class="body"
+    style="width: 15vh;height: 3.3vh;display: flex; align-items: center; justify-content: center;background: #181818;position: absolute;top: 17.7vh; left:35vh;rotate: -23deg; box-shadow: 0vh 0vh 0.2vh 0vh #181818;">
+    <p class="title" style="font-family: lexend; font-size: 1.4vh;font-weight: 600; color: #ffffff;">Drive Details</p>
+</div>
+
+<div class="d-flex justify-content-center align-items-center mt-4">
+    <div class="p-4 mt-4 rounded-3"
+        style="width: 60%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-4" style=" font-family:Lexend;font-size: 4.5vh;font-weight: 550;margin-bottom: 6vh;">
+            {{company.company}} </p>
+        <form method="post" class="row g-3">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh; margin-bottom: 1.3vh;">
+                        Drive</p>
+                </label>
+                <input value="{{drive.drivename}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Job Title</p>
+                </label>
+                <input value="{{drive.jobtitle}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Description</p>
+                </label>
+                <textarea class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    rows="4" disabled>{{drive.description}}</textarea>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Eligibility</p>
+                </label>
+                <textarea class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    rows="4" disabled>{{drive.eligibility}}</textarea>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Salary</p>
+                </label>
+                <input value="{{drive.salary}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Deadline</p>
+                </label>
+                <input value="{{drive.deadline}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;"
+                    disabled>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Status</p>
+                </label>
+                <select name="status" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 450;font-family: Lexend;">
+                    {% if drive.status=="Pending" %}
+                    <option value="Pending" selected>Pending</option>
+                    <option value="Ongoing">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                    {% elif drive.status=="Ongoing" %}
+                    <option value="Ongoing" selected>Approved</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Rejected">Rejected</option>
+                    {% elif drive.status=="Closed"  %}
+                    <option value="Closed" selected>Closed</option>
+                    {% else %}
+                    <option value="Rejected" selected>Rejected</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div style="display: flex;align-items: center; justify-content: space-evenly;">
+            <div>
+                <a href="/drive_list"><button type="button" class="btn btn-dark"
+                    style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;"><i class="bi bi-arrow-left"></i> Back</button></a>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark"
+                    style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Update
+                    Status</button>
+            </div>
+            </div>
+        </form>
+    </div>
+
+    {% endblock %}

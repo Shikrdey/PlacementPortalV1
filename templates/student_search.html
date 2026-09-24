@@ -1,0 +1,51 @@
+{% extends "studenthome.html" %}
+{% block title %} Search Results {% endblock %}
+{% block content %}
+<a href="/studenthome" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 14vh;left: 6vh; border-radius: 1vh;">
+        Back</div>
+</a>
+<div class="container">
+    <div class="row">
+        {% if drive %}
+        <div>
+            <p class="text-center" style="font-family: Lexend; font-weight: 600;font-size: 4vh; margin-top: 2.5vh;">
+                Search Results</p>
+        </div>
+        {% for d in drive %}
+        {% for c in company %}
+        {% if c.id==d.company_id %}
+
+
+
+        <div class="card mb-3 mt-3"
+            style="width: 21%; margin-left: 3vh; margin-right: 3vh; background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+            <div class="card-header">
+                <p style="font-family: Lexend;">{{c.company | upper }}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <p style="font-family: Lexend; font-weight: 600;">{{d.jobtitle}}</p>
+                </h5>
+                <p class="card-text" style="font-family: Lexend;">Deadline: <span
+                        style="font-family: Lexend; font-weight: 550;">{{d.deadline}}</span></p>
+                <div class="text-center viewbutton" style="align-self: center;">
+                    <a href="/drive_apply/{{d.id}}"><button type="submit" class="btn btn-dark"
+                            style="width: 25vh;height: 6vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;margin-left:-2%;">Apply</button></a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+        {% else %}
+         <p class="text-center text-muted" style="font-family: lexend; font-size: 4vh; font-weight: 600; margin-top: 11vh;">Oops!
+            No results found for your search.</p>
+        <p class="text-center text-muted" style="font-family: lexend;font-size: 5vh; font-weight: 600;"><i
+                class="bi bi-emoji-frown"></i></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

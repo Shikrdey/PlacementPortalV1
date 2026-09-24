@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin Dashboard{% endblock %}</title>
+  <link rel="icon" href="/static/Images/fevicon.png">
+  <link rel="stylesheet" href="/static/home.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <div class="parent">
+    <div class="nav" style="justify-content: space-between;">
+      <div class="head" style="margin-left: 8vh;">
+        <a href="/admindashboard" style="text-decoration: none;">
+          <p class="title">Welcome,</p>
+          <p class="subtitle">ADMIN!</p>
+        </a>
+      </div><form method="post" action="/admin/search">
+      <div class="bar_search">
+        <input name="query" type="search" class="Search" placeholder="Try searching here (i.e, Microsoft, Shikhar)" required>
+        <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
+      </div>
+      </form>
+      <a href="/logout" class="links" style="margin-right: 8vh;">Logout</a>
+    </div>
+    <div class="main_content">
+      <div class="d-flex justify-content-center mt-1">
+        {% with messages= get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show w-50 d-flex justify-content-center p-2"
+          role="alert" style="font-family: lexend;">
+          {{ msg }}
+          <button type="button" class="btn-close p-2 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endwith %}
+      </div>
+      {% block content %}
+      <div class="row mt-3 mb-4" style="margin-left: 4.5vh;margin-right: 4.5vh;">
+        <div class="col-3">
+          <a href="/application_list" style="text-decoration: none;">
+            <div class="shadow card text-center border-dark">
+              <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                    class="bi bi-journal-check text-primary"></i> Applications</p>
+                <h2 class="text-primary">{{ application }}</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="/drive_list" style="text-decoration: none;">
+          <div class="shadow card text-center border-dark">
+            <div class="card-body">
+              <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                  class="bi bi-calendar text-info"></i> Drives</p>
+              <h2 class="text-info">{{ drive }}</h2>
+            </div>
+          </div>
+        </a>
+        </div>
+        <div class="col-3"><a href="/company_list" style="text-decoration: none;">
+            <div class="shadow card text-center border-dark">
+              <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                    class="bi bi-buildings text-secondary"></i> Recruiters</p>
+                <h2 class="text-secondary">{{ company | length }}</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-3"><a href="/student_list" style="text-decoration: none;">
+            <div class="shadow card text-center border-dark">
+              <div class="card-body">
+                <p class="card-title" style="font-family: lexend; font-size: 2.5vh; font-weight: 500;"><i
+                    class="bi bi-people text-success"></i> Students</p>
+                <h2 class="text-success">{{ student }}</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div style="margin-left: 3vh; margin-right: 13vh;">
+        {% if pending_company or pending_drive %}
+        {% if pending_company %}
+        <div>
+          <p style="font-family: lexend; font-size: 3vh; font-weight: 600; margin-left: 5vh;">Companies Awaiting
+            Approval ({{pending_company|length}})</p>
+          <table class="table table-hover" style="margin-left: 5vh; margin-bottom: 2vh;">
+            <tr class="table-secondary">
+              <th scope="col" style="font-family: lexend; font-size: 2.1vh;">Company</th>
+              <th scope="col" style="width: 230px; text-align: center; font-family: lexend; font-size: 2.1vh;">Email
+              </th>
+              <th scope="col" style="width: 150px; text-align: center; font-family: lexend; font-size: 2.1vh;">Action
+              </th>
+            </tr>
+            {% for p in pending_company %}
+            <tr>
+              <td>{{p.company}}</td>
+              <td class="text-center">{{p.email}}</td>
+              <td>
+              <a href="/admin/delete/company/{{p.id}}" class="btn btn-danger btn-sm viewbutton"
+                        style="height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh; margin-left: 2vh;"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="/company_approval/{{p.id}}" class="btn btn-dark viewbutton"
+                        style="width: 8vh; height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;margin-left: 0.1vh;">View</a>
+                    </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+        {% if pending_drive %}
+        <div>
+          <p style="font-family: lexend; font-size: 3vh; font-weight: 600; margin-left: 5vh;">Placement Drives Awaiting
+            Approval ({{pending_drive | length }})</p>
+          <table class="table table-hover" style="margin-left: 5vh;">
+            <tr class="table-secondary">
+              <th scope="col" style="font-family: lexend; font-size: 2.1vh;">Company</th>
+              <th scope="col" style="width: 230px; text-align: center; font-family: lexend; font-size: 2.1vh;">Drive
+              </th>
+              <th scope="col" style="width: 300px; text-align: center; font-family: lexend; font-size: 2.1vh;">Job Title
+              </th>
+              <th scope="col" style="width: 150px; text-align: center; font-family: lexend; font-size: 2.1vh;">Action
+              </th>
+            </tr>
+            {% for p in pending_drive %}
+            {% for c in company %}
+            {% if p.company_id==c.id %}
+            <tr>
+              <td>{{c.company}}</td>
+              <td class="text-center">{{p.drivename}}</td>
+              <td class="text-center">{{p.jobtitle}}</td>
+              <td>
+              <a href="/admin/delete/drive/{{p.id}}" class="btn btn-danger btn-sm viewbutton"
+                        style="height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh; margin-left: 2vh;"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="/drive_approval/{{p.id}}" class="btn btn-dark viewbutton"
+                        style="width: 8vh; height: 4.5vh;font-family: Lexend;font-weight: 450;font-size: 2vh;margin-left: 0.1vh;">View</a>
+                    </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+        {% else %}
+        <p class="text-center text-muted" style="font-family: lexend; font-size: 4vh; font-weight: 600; margin-left: 15vh; margin-top: 11vh;">All caught up! No pending approvals.</p>
+        <p class="text-center text-muted" style="font-family: lexend;font-size: 5vh; font-weight: 600; margin-left: 17vh;"><i class="bi bi-check2-circle"></i></p>
+        {% endif %}
+      </div>
+      {% endblock %}
+    </div>
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+  integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+
+</html>

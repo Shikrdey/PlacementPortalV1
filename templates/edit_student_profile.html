@@ -1,0 +1,203 @@
+{% extends "studenthome.html" %}
+{% block title %}Edit Student Profile {% endblock %}
+{% block content %}
+<a href="/student_profile/{{student.id}}" style="text-decoration: none;">
+    <div class="backbutton"
+        style="display: flex;justify-content: center;align-items: center; font-family: lexend;font-size: 1.7vh;font-weight: 400; height: 4vh; width: 9vh; background-color: #181818; color: #ffffff; position: absolute;top: 15vh;left: 7vh; border-radius: 1vh;">
+        Back</div>
+</a>
+
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="p-4 mt-4 rounded-3"
+        style="width: 65%;background-color: rgb(246, 243, 243);box-shadow: 0vh 0vh 0.2vh 0vh #181818">
+        <p class="text-center mb-4" style=" font-family:Lexend;font-size: 4.5vh;font-weight: 550;">
+            Edit Student Details </p>
+        <form method="post" class="row g-3">
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh; margin-bottom: 1.3vh;">
+                        Name</p>
+                </label>
+                <input type="text" name="name" value="{{student.name}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                   minlength="3" maxlength="50" required>
+            </div>
+            <div class="col-md-3 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Date of Birth</p>
+                </label>
+                <input type="date" name="dob" value="{{student.dob}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                    required>
+            </div>
+            <div class="col-md-3 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Gender</p>
+                </label>
+                <select name="gender" class="form-control"
+                        style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family:Lexend;">
+                           {% if student.gender =="Male" %}         
+                        <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                    {% elif student.gender=="Female" %}
+                                     <option value="Male">Male</option>
+                                    <option value="Female" selected>Female</option>
+                                    <option value="Others">Others</option>
+                                    {% else %}
+                                     <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others" selected>Others</option>
+                                    {% endif %}
+                    
+                    
+                    </select>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Linkedin</p>
+                </label>
+                <input type="url" name="linkedin" value="{{student.linkedin}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                   minlength="4"  maxlength="255" required>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Department</p>
+                </label>
+                <select name="department" class="form-control"
+                        style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family:Lexend;">
+                        {% if student.department=="Data Science & Applications" %}
+                        <option  value="Data Science & Applications" selected>Data Science & Applications
+                        </option>
+                        <option value="Electronic Systems">Electronic Systems</option>
+                        <option value="Aeronautics and Space Technology">Aeronautics and Space Technology
+                        </option>
+                        <option value="Management and Data Science">Management and Data Science</option>
+                        {% elif student.department=="Electronic Systems" %}
+                        <option value="Data Science & Applications">Data Science & Applications</option>
+                        <option value="Electronic Systems" selected>Electronic Systems</option>
+                        <option value="Aeronautics and Space Technology">Aeronautics and Space Technology
+                        </option>
+                        <option value="Management and Data Science">Management and Data Science</option>
+                        {% elif student.department=="Aeronautics and Space Technology" %}
+                        <option value="Data Science & Applications">Data Science & Applications</option>
+                        <option value="Electronic Systems">Electronic Systems</option>
+                        <option value="Aeronautics and Space Technology" selected>Aeronautics and Space
+                            Technology</option>
+                        <option value="Management and Data Science">Management and Data Science</option>
+                        {% else %}
+                        <option value="Data Science & Applications">Data Science & Applications</option>
+                        <option value="Electronic Systems">Electronic Systems</option>
+                        <option value="Aeronautics and Space Technology">Aeronautics and Space Technology
+                        </option>
+                        <option value="Management and Data Science" selected>Management and Data Science
+                        </option>
+                        {% endif %}
+                    </select>
+            </div>
+            <div class="col-md-4 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Degree</p>
+                </label>
+                <select name="degree" class="form-control"
+                        style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;">
+                        {% if student.degree=="Bachelor of Science (BS)"%}
+                        <option value="Bachelor of Science (BS)" selected>Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% elif student.degree=="Bachelor of Science (BSc)" %}
+                        <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)" selected>Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% elif student.degree=="Diploma" %}
+                        <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma" selected>Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% elif student.degree=="Diploma in Data Science" %}
+                         <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science" selected>Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% elif student.degree=="Diploma in Programming" %}
+                        <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming" selected>Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% elif student.degree=="PG Diploma in AL and ML" %}
+                        <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML" selected>PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML">M.Tech in AI and ML</option>
+                        {% else %}
+                        <option value="Bachelor of Science (BS)">Bachelor of Science (BS)</option>
+                        <option value="Bachelor of Science (BSc)">Bachelor of Science (BSc)</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Diploma in Data Science">Diploma in Data Science</option>
+                        <option value="Diploma in Programming">Diploma in Programming</option>
+                        <option value="PG Diploma in AL and ML">PG Diploma in AL and ML</option>
+                        <option value="M.Tech in AI and ML" selected>M.Tech in AI and ML</option>
+                        {% endif %}
+
+                    </select>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Email</p>
+                </label>
+                <input type="email" name="email" value="{{student.email}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                   minlength="7" maxlength="50" required>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label class="form-label">
+                    <p
+                        style="font-family: lexend; font-size: 1.5vh;font-weight: 700;margin-left: -0.3vh;margin-bottom: 1.3vh;">
+                        Password</p>
+                </label>
+                <input type="password" name="password" value="{{student.password}}" class="form-control"
+                    style="background-color:rgb(229, 229, 229);color: #262626;font-weight: 400;font-family: Lexend;"
+                   minlength="8" maxlength="15" required>
+            </div>
+
+            <div class="text-center viewbutton"> 
+                <button type="submit" class="btn btn-dark"
+                    style="width: 50vh;height: 7vh;font-family: Lexend;font-weight: 600;font-size: 2.5vh;">Update Changes</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
